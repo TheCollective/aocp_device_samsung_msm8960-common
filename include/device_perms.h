@@ -14,23 +14,10 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.device;
+#ifndef DEVICE_PERMS_H
+#define DEVICE_PERMS_H
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+#define PROPERTY_PERMS_APPEND \
+    { "persist.audio.",   AID_SYSTEM,   0 },
 
-public class Startup extends BroadcastReceiver {
-
-    @Override
-    public void onReceive(final Context context, final Intent bootintent) {
-        mDNIeScenario.restore(context);
-        mDNIeMode.restore(context);
-        mDNIeOutdoor.restore(context);
-        mDNIeNegative.restore(context);
-        CABC.restore(context);
-        SensorsFragmentActivity.restore(context);
-        SoundFragmentActivity.restore(context);
-    }
-
-}
+#endif /* DEVICE_PERMS_H */

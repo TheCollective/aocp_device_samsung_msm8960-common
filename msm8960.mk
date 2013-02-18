@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -38,34 +37,26 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
-# EGL config
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8960-common/configs/egl.cfg:system/lib/egl/egl.cfg
-
 # Media config
 PRODUCT_COPY_FILES += \
-    device/samsung/msm8960-common/configs/media_profiles.xml:system/etc/media_profiles.xml \
-	device/samsung/msm8960-common/configs/media_codecs.xml:system/etc/media_codecs.xml
+    device/samsung/msm8960-common/configs/media_profiles.xml:system/etc/media_profiles.xml
 
-# QCOM Display
+# Audio
+PRODUCT_PACKAGES += \
+    alsa.msm8960 \
+    audio_policy.msm8960 \
+    audio.primary.msm8960 \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    libaudio-resampler
+
+# HAL
 PRODUCT_PACKAGES += \
     copybit.msm8960 \
     gralloc.msm8960 \
     hwcomposer.msm8960 \
-    libgenlock \
-    libmemalloc \
-    liboverlay \
-    libQcomUI \
-    libtilerenderer \
-    hdmid \
-    libI420colorconvert
-
-# Audio
-PRODUCT_PACKAGES += \
-    audio.a2dp.default
-#    alsa.msm8960 \
-#    audio_policy.msm8960 \
-#    audio.primary.msm8960
+    power.msm8960
 
 # GalaxyS3Settings
 PRODUCT_PACKAGES += \
@@ -73,8 +64,11 @@ PRODUCT_PACKAGES += \
      SamsungServiceMode
 
 # GPS
-#PRODUCT_PACKAGES += \
-#	gps.msm8960
+PRODUCT_PACKAGES += \
+	gps.msm8960
+
+PRODUCT_COPY_FILES += \
+    device/samsung/msm8960-common/gps/gps.conf:system/etc/gps.conf
 
 # NFC Support
 PRODUCT_PACKAGES += \
@@ -93,17 +87,6 @@ endif
 PRODUCT_COPY_FILES += \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
-# Omx
-PRODUCT_PACKAGES += \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
-    libOmxCore \
-    libstagefrighthw \
-    libOmxVdec \
-    libOmxVenc \
-    libOmxAacEnc \
-    libOmxAmrEnc
-
 # Misc
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -114,19 +97,6 @@ PRODUCT_PACKAGES += \
     LiveWallpapersPicker \
     VisualizationWallpapers \
     librs_jni
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    make_ext4fs \
-    setup_fs
-
-# for bugmailer
-ifneq ($(TARGET_BUILD_VARIANT),user)
-    PRODUCT_PACKAGES += send_bug
-    PRODUCT_COPY_FILES += \
-        system/extras/bugmailer/bugmailer.sh:system/bin/bugmailer.sh \
-        system/extras/bugmailer/send_bug:system/bin/send_bug
-endif
 
 # keylayouts
 PRODUCT_COPY_FILES += \
@@ -163,18 +133,6 @@ PRODUCT_COPY_FILES += \
     device/samsung/msm8960-common/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/samsung/msm8960-common/idc/qwerty2.idc:system/usr/idc/qwerty2.idc
 
-# Misc init scripts
-PRODUCT_COPY_FILES += \
-    device/samsung/msm8960-common/etc/init.qcom.modem_links.sh:system/etc/init.qcom.modem_links.sh \
-    device/samsung/msm8960-common/etc/init.qcom.mdm_links.sh:system/etc/init.qcom.mdm_links.sh \
-    device/samsung/msm8960-common/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh
-
-# Charger
-PRODUCT_PACKAGES += charger charger_res_images
-PRODUCT_COPY_FILES += \
-	device/samsung/msm8960-common/lpm/lpm.rc:root/lpm.rc \
-	device/samsung/msm8960-common/lpm/init.qcom.lpm_boot.sh:root/init.qcom.lpm_boot.sh
-
 # Needed to reset bootmode when leaving recovery
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/recovery/postrecoveryboot.sh:recovery/root/sbin/postrecoveryboot.sh \
@@ -183,8 +141,9 @@ PRODUCT_COPY_FILES += \
 # We have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
-PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
-
 # Common overlay
 DEVICE_PACKAGE_OVERLAYS += device/samsung/msm8960-common/overlay
+
+# common msm8960
+$(call inherit-product, device/samsung/qcom-common/qcom-common.mk)
 
