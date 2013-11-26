@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2013 The CyanogenMod Project
+<!-- Copyright (C) 2013 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -17,36 +17,36 @@
     <string-array name="mdnie_scenario_entries">
         <item>UI</item>
         <item>Video</item>
-        <item>Camera</item>
-        <item>Navigazione</item>
-        <item>Galleria</item>
+        <item>Kamera</item>
+        <item>Navigation</item>
+        <item>Galleri</item>
         <item>VT</item>
-        <item>Bypass</item>
+        <item>Omgå</item>
     </string-array>
     <string-array name="mdnie_mode_entries">
-        <item>Automatico</item>
+        <item>Auto</item>
         <item>Standard</item>
-        <item>Dinamico</item>
-        <item>Naturale</item>
+        <item>Dynamisk</item>
+        <item>Naturlig</item>
         <item>Film</item>
     </string-array>
     <string-array name="panel_gamma_entries">
-        <item>2.2 (Predefinito)</item>
-        <item>1.9</item>
+        <item>2,2 (Standard)</item>
+        <item>1,9</item>
     </string-array>
     <string-array name="touchscreen_sensitivity_entries">
         <item>10</item>
         <item>20</item>
         <item>30</item>
-        <item>50 (Predefinito)</item>
+        <item>50 (Standard)</item>
         <item>70</item>
         <item>100</item>
     </string-array>
-    <string-array name="panel_color_temp_entries" >
-        <item>Freddo</item>
-        <item>Fresco</item>
-        <item>Normale</item>
-        <item>Tiepido</item>
-        <item>Caldo</item>
+    <string-array name="panel_color_temp_entries">
+        <item>Kold</item>
+        <item>Kølig</item>
+        <item>Normal</item>
+        <item>Varm</item>
+        <item>Hed</item>
     </string-array>
 </resources>
